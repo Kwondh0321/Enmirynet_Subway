@@ -100,8 +100,8 @@ function getArrivalInfoHTML(arrivals) {
         <div><strong>상하행: </strong> ${arrival[1]}</div>
         <div><strong>행선지: </strong> ${arrival[2]}</div>
         <div><strong>전철번호: </strong> ${arrival[3]}</div>
-        <div><strong>현재위치: </strong> ${arrival[4]}</div>
-        <div><strong>역위치: </strong> ${arrival[5]}</div>
+        <div><strong>현재상황: </strong> ${arrival[4]}</div>
+        <div><strong>현재위치: </strong> ${arrival[5]}역</div>
       </div>
     `;
   });
