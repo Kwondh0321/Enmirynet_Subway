@@ -3,11 +3,11 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300&display=swap');
 
 .transition {
-   -webkit-transition: 3s all ease-in;
-   -moz-transition: 3s all ease-in;
-   -ms-transition: 3s all ease-in;
-   -o-transition: 3s all ease-in;
-   transition: 3s all ease-in
+    -webkit-transition: 3s all ease-in;
+    -moz-transition: 3s all ease-in;
+    -ms-transition: 3s all ease-in;
+    -o-transition: 3s all ease-in;
+    transition: 3s all ease-in
 }
 
 a {
@@ -22,12 +22,12 @@ input {
 
 a#TOP {
     position: fixed;
-   bottom: 30px;
-   display:scroll;
+    bottom: 30px;
+    display: scroll;
     width: 60px;
-   height: 60px;
-   border-radius: 50%;
-    right:5px;
+    height: 60px;
+    border-radius: 50%;
+    right: 5px;
 }
 
 .head_title {
@@ -35,11 +35,13 @@ a#TOP {
     text-align: center;
     font-size: 2.7rem;
 }
+
 .search_box {
     text-align: center;
     margin-top: 3%;
 }
-.search-list{
+
+.search-list {
     max-width: 1500px;
     width: 100%;
     text-align: center;
@@ -48,41 +50,58 @@ a#TOP {
 }
 
 @media only screen and (max-width: 480px) {
-  search-list {
-    width: 350px;
-  }
+    search-list {
+        width: 350px;
+    }
 }
-.searchs h3{
+
+.searchs h3 {
     font-size: 24px;
     color: #545454;
-    margin-top:60px;
+    margin-top: 60px;
     margin-bottom: 60px;
     text-align: center;
 }
-.search{
+
+.search {
     display: inline-block;
     width: 225px;
     text-align: center;
-    text-decoration:none;
+    text-decoration: none;
     color: black;
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 30px;
 }
-.search-name{
+
+.search-name {
     text-overflow: ellipsis;
-    white-space  : nowrap;
-    overflow : hidden;
+    white-space: nowrap;
+    overflow: hidden;
     margin-top: 20px;
     margin-bottom: 4px;
-  font-family: 'Do Hyeon', cursive;
+    font-family: 'Do Hyeon', cursive;
 }
-.search-price{
-  font-family: 'IBM Plex Sans KR', sans-serif;
+
+.search-price {
+    font-family: 'IBM Plex Sans KR', sans-serif;
 }
-.clearfix{
+
+.arrival-info {
+  margin-top: 10px;
+}
+
+.arrival-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+}
+
+.clearfix {
     clear: both;
 }
+
 .input_keyword {
     width: 46%;
     height: 45px;
@@ -181,4 +200,35 @@ a#TOP {
 .right_sidebar_box_readmore:hover:after {
     width: 100%;
     transition: 800ms ease all;
+}
+
+/* 새로 추가한 부분 - 토글 버튼 스타일 */
+.expand-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.expandable-content {
+    display: none;
+    background-color: #f1f1f1;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 15px; /* 동글동글한 효과를 위해 수정 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+}
+
+.arrival-info {
+    margin-top: 10px;
+}
+
+.arrival-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
 }
