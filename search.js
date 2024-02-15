@@ -65,31 +65,54 @@ async function fetchSubwayData() {
   updateUI();
 }
 
+// subway-line 이름 중복 방지용 카운트
+function getUniqueLineName(lineId, directionKey) {
+  const baseName = `${subway_line[lineId]} ${directionKey}`;
+  let uniqueName = baseName;
+  let count = 2;
+
+  const subwayLines = document.querySelectorAll('.subway-line');
+  while (Array.from(subwayLines).some(el => el.textContent === uniqueName)) {
+    uniqueName = `${baseName} ${count}`;
+    count++;
+  }
+
+  return uniqueName;
+}
+
 // UI 업데이트 함수
 function updateUI() {
-  const tag = document.getElementById("chatting");
-  tag.innerHTML = ""; // 엘리먼트 내용 초기화
+  const chatContainer = document.getElementById("chatHistory");
+  chatContainer.innerHTML = ""; // chatHistory 컨테이너 내용 초기화
 
   for (const lineId in subwayArrivalInfo) {
     const lineInfo = subwayArrivalInfo[lineId];
+
     for (const directionKey in lineInfo) {
       const arrivals = lineInfo[directionKey];
+
       if (arrivals.length >= 1) {
-        tag.innerHTML += `
-          <div class="search-list">
-            <div class="subway-line">${subway_line[lineId]} ${directionKey}</div>
-            <button class="expand-btn" aria-expanded="false" aria-controls="content_${lineId}_${directionKey}" onclick="toggleContent('${lineId}_${directionKey}')">+</button>
-            <div class="expandable-content" id="content_${lineId}_${directionKey}" aria-hidden="true">
-              ${getArrivalInfoHTML(arrivals)}
+        arrivals.forEach(arrival => {
+          // chatHistory 컨테이너에 각 subway-line에 대한 독립적인 박스 추가
+          const boxContainer = document.createElement('div');
+          boxContainer.classList.add('searchs'); // 클래스 이름을 'searchs'로 지정
+
+          const uniqueLineName = getUniqueLineName(lineId, directionKey);
+
+          boxContainer.innerHTML = `
+            <div class="subway-line">${uniqueLineName}</div>
+            <button class="expand-btn" aria-expanded="false" aria-controls="content_${lineId}_${directionKey}_${arrival[3]}" onclick="toggleContent('${lineId}', '${directionKey}', '${arrival[3]}')">+</button>
+            <div class="expandable-content" id="content_${lineId}_${directionKey}_${arrival[3]}" aria-hidden="true">
+              ${getArrivalInfoHTML([arrival])}
             </div>
-          </div>
-          <br>
-        `;
+          `;
+
+          chatContainer.appendChild(boxContainer);
+        });
       }
     }
   }
 }
-
 
 function getArrivalInfoHTML(arrivals) {
   let html = '<div class="arrival-info">';
@@ -108,12 +131,47 @@ function getArrivalInfoHTML(arrivals) {
   return html;
 }
 
-// 토글 함수
-function toggleContent(contentId) {
-  const content = document.getElementById(`content_${contentId}`);
-  const button = document.querySelector(`[aria-controls="content_${contentId}"]`);
+// 버튼 상태를 저장하는 객체
+const buttonStates = {};
 
-  const expanded = button.getAttribute('aria-expanded') === 'true';
+// 토글 함수
+function toggleContent(lineId, directionKey, trainNo) {
+  const contentId = `${lineId}_${directionKey}_${trainNo}`;
+  const content = document.getElementById(`content_${contentId}`);
+  const button = document.querySelector(`button[aria-controls="content_${contentId}"]`);
+
+  if (!content) {
+    console.error('Content not found for', contentId);
+    return;
+  }
+
+  if (!button) {
+    console.error('Button not found for', contentId);
+    return;
+  }
+
+  // contentId에 해당하는 버튼 상태가 없으면 초기화
+  if (!buttonStates[contentId]) {
+    buttonStates[contentId] = false;
+  }
+
+  const expanded = buttonStates[contentId];
+  buttonStates[contentId] = !expanded;
+
   button.setAttribute('aria-expanded', !expanded);
   content.style.display = expanded ? 'none' : 'block'; // 토글
 }
+
+
+function handleScroll() {
+  const headTitle = document.querySelector(".head_title");
+  const inputBox = document.querySelector(".input_box");
+  const scrollY = window.scrollY;
+
+  inputBox.style.transition = "top 0.4s ease";
+  inputBox.style.position = "fixed";
+  inputBox.style.top = scrollY <= headTitle.offsetHeight ? `${headTitle.offsetHeight}px` : "0";
+}
+
+// 스크롤 이벤트에 함수 연결
+window.addEventListener("scroll", handleScroll);
