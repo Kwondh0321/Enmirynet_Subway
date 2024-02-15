@@ -22,7 +22,7 @@ let subwayArrivalInfo = {};
 
 async function fetchSubwayData() {
   const search = document.getElementById("input_keyword").value;
-  const tag = document.getElementById("search_index");
+  const tag = document.getElementById("chatting");
   const apiUrl = '/subway';
 
   const res = await fetch(apiUrl, {
@@ -67,7 +67,7 @@ async function fetchSubwayData() {
 
 // UI 업데이트 함수
 function updateUI() {
-  const tag = document.getElementById("search_index");
+  const tag = document.getElementById("chatting");
   tag.innerHTML = ""; // 엘리먼트 내용 초기화
 
   for (const lineId in subwayArrivalInfo) {
@@ -77,7 +77,7 @@ function updateUI() {
       if (arrivals.length >= 1) {
         tag.innerHTML += `
           <div class="search-list">
-            <div class="subway-line">${lineId} ${directionKey}</div>
+            <div class="subway-line">${subway_line[lineId]} ${directionKey}</div>
             <button class="expand-btn" aria-expanded="false" aria-controls="content_${lineId}_${directionKey}" onclick="toggleContent('${lineId}_${directionKey}')">+</button>
             <div class="expandable-content" id="content_${lineId}_${directionKey}" aria-hidden="true">
               ${getArrivalInfoHTML(arrivals)}
@@ -97,8 +97,7 @@ function getArrivalInfoHTML(arrivals) {
     html += `
       <div class="arrival-item">
         <div><strong>노선: </strong> ${arrival[0]}</div>
-        <div><strong>상하행: </strong> ${arrival[1]}</div>
-        <div><strong>행선지: </strong> ${arrival[2]}</div>
+        <div><strong>행선지: </strong> ${arrival[2]} (${arrival[1]})</div>
         <div><strong>전철번호: </strong> ${arrival[3]}</div>
         <div><strong>현재상황: </strong> ${arrival[4]}</div>
         <div><strong>현재위치: </strong> ${arrival[5]}역</div>

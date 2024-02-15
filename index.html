@@ -1,39 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enmirynet_subway</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>SW엔미리넷</title>
+  <link rel="stylesheet" href="gpt.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Fasthand&display=swap" rel="stylesheet">
 
-    <!-- Css 연결부 -->
-    <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="index.css">
 
-  <script src="https://kit.fontawesome.com/7c8726bd72.js" crossorigin="anonymous"></script>
+  <script src="search.js" defer></script>
+  
+  <div class="head_title">
+    <a>SubWay_Enmirynet</a>
+  </div>
+  <br>
 </head>
 
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="navbar-logo">
-                <h1>Subway-엔미리넷</h1>
-            </div>
-        </nav>
-    </header>
+	<header>
+		<div class="input_box">
+    <input class="input_keyword" id="input_keyword" type="text" maxlength="63" placeholder="검색어를 입력하시오..." onkeypress="if(event.keyCode == 13){fetchSubwayData()}"></input>
+    <button class="confirm-button">OK</button>
+  </div>
+	</header>
 
-    <div class="main-content">
-        <p>여기에 메인 화면 넣을 예정</p>
-    </div>
-
-    <footer>
-        <nav class="menu">
-            <i class="fa-solid fa-house"></i>
-          <a href="search.html" target="_self" class="fa-solid fa-magnifying-glass"></a>
-            <i class="fa-solid fa-gear"></i>
-          <i class="fa-solid fa-bars"></i>
-        </nav>
-    </footer>
+  <br><br>
+  <div>
+    <div id="chatHistory">
+			<div id="chatting">Result</div>
+		</div>
+  </div>
 </body>
-
 </html>

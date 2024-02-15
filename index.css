@@ -1,62 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Salsa&display=swap');
+
 body {
-    margin: 0;
-    padding: 0;
+  background: 
+    linear-gradient(45deg, #F2EFDE 25%, transparent 25%, transparent 75%, #F2EFDE 75%, #F2EFDE),
+    linear-gradient(45deg, #F6F2E4 25%, transparent 25%, transparent 75%, #F6F2E4 75%, #F6F2E4);
+  background-color: #F6F2E4;
+  background-size: 170px 170px;
+  background-position: 0 0, 85px 85px;
+  margin: 0;
+  padding: 0;
+  font-family: 'IBM Plex Sans KR', sans-serif;
 }
 
-header {
-    background-color: #333;
-    color: #fff;
-    /* padding: 20px; */
-    position: fixed;
-    top: 0;
-    width: 100%;
+a {
+  text-decoration-line: none;
+  font-size: 85%;
+  color: #333;
 }
 
-.navbar {
-    text-align: center;
-    align-items: center;
+input {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
 }
 
-footer {
-    background-color: #333;
-    color: #fff;
-    /* padding: 20px; */
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+a#TOP {
+  position: fixed;
+  bottom: 30px;
+  display: scroll;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  right: 5px;
 }
 
-/* .menu {
-    justify-content: space-between;
-    display: flex;
-    flex-direction: row;
-} */
-
-.main-content {
-    padding: 50px 20px;
-    margin-top: 80px;
-    margin-bottom: 80px;
+.head_title {
+  font-family: 'Salsa', cursive;
+  text-align: center;
+  font-size: 2.7rem;
+  color: #333;
+  margin-top: 2%;
 }
 
-.menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    /* margin-right: 1.5rem; */
-    background-color: #333;
-    color: #fff;
-    padding: 1rem;
+.input_box {
+  position: fixed;
+  top: 60px; /* 헤더 높이에 맞게 조절하세요 */
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 3%;
+  z-index: 999; /* 헤더 위로 나타나도록 설정 */
 }
 
-.menu a {
-    color: #fff;
-    text-decoration: none;
+.input_keyword {
+  width: 40%;
+  height: 45px;
+  padding: 0 40px;
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0px 21px 40px 0px rgba(0, 0, 0, 0.3);
+  text-align: center;
 }
 
-.menu i {
-  color: #fff;
+.input_keyword::placeholder {
+  font-size: 0.8rem;
+  font-weight: bold;
+  opacity: 0.4;
 }
 
-.menu a:last-child {
-    margin-right: 0;
+.confirm-button {
+  background-color: #dad095;
+  color: #000000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  height: 45px;
+  width: 80px;
+}
+
+.confirm-button:hover {
+  background-color: #d6bf4c;
+}
+
+#chatHistory {
+  width: 80%;
+  margin: 0 auto;
+  background-color: #faf5db;
+  border-radius: 15px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  margin-top: 40px;
+  color: #333;
+  font-family: 'Gowun Dodum', sans-serif;
+  font-size: 17px;
+  margin-bottom: auto;
+  max-height: 600px; /* 최대 높이를 설정해 필요한 경우 스크롤이 생성되도록 함 */
+  overflow-y: auto; /* 스크롤이 필요할 때만 스크롤 생성 */
+}
+
+#chatting {
+  text-align: center;
+  font-family: 'Salsa', cursive;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+/* 대화창 크기조정 (모바일이 아닌 스크린에선 750px로 고정) */
+@media only screen and (min-width: 481px) {
+  #chatHistory {
+    max-width: 700px;
+  }
+}
+
+@media only screen and (max-height: 550px) {
+  #chatHistory {
+    max-height: 450px;
+  }
+}
+
+@media only screen and (max-height: 450px) {
+  #chatHistory {
+    max-height: 350px;
+  }
+}
+@media only screen and (max-height: 350px) {
+  #chatHistory {
+    max-height: 250px;
+  }
+}
+
+/* 대화창 제목 */
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+/* 채팅 말풍선 */
+.chat-bubble {
+  display: block;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px 0;
+  width: 60%;
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.1);
+}
+
+/* ME 메시지 */
+.me-bubble {
+  background: linear-gradient(135deg, #7799fd 0%, #33c2ff 100%);
+  color: #333;
+  text-align: right;
+  margin-left: auto;
+  word-wrap: break-word; /* 글자가 너무 길어 말풍선을 넘어갈 때 자동으로 줄바꿈 */
+}
+
+/* AI 메시지 */
+.ai-bubble {
+  background: linear-gradient(135deg, #7ee782 0%, #baf96c 100%);
+  color: #333;
+  text-align: left;
+  margin-right: auto;
+  word-wrap: break-word; /* 글자가 너무 길어 말풍선을 넘어갈 때 자동으로 줄바꿈 */
+}
+
+/* System 메시지 */
+.system-bubble {
+  background: linear-gradient(135deg, #ff7a7a 0%, #ff3d3d 100%);
+  color: #362b2b;
+  text-align: left;
+  margin-right: auto;
+  margin-left: auto;
+  word-wrap: break-word; /* 글자가 너무 길어 말풍선을 넘어갈 때 자동으로 줄바꿈 */
 }
