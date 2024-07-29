@@ -5,34 +5,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>SW엔미리넷</title>
-  <link rel="stylesheet" href="gpt.css">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Fasthand&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="index.css">
-
-  <script src="search.js" defer></script>
+  <title>SW엔미리넷 - 지하철 도착 정보</title>
   
-  <div class="head_title">
-    <a>SubWay_Enmirynet</a>
-  </div>
-  <br>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- jQuery and Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Custom JS -->
+  <script src="search.js" defer></script>
 </head>
 
 <body>
-	<header>
-		<div class="input_box">
-    <input class="input_keyword" id="input_keyword" type="text" maxlength="63" placeholder="검색어를 입력하시오..." onkeypress="if(event.keyCode == 13){fetchSubwayData()}"></input>
-    <button class="confirm-button" onclick="fetchSubwayData()">OK</button>
-  </div>
-	</header>
+  <header class="bg-primary text-white text-center py-3">
+    <h1>SubWay Enmirynet</h1>
+  </header>
 
-  <br><br>
-  <div>
-    <div id="chatHistory">
-			<div id="chatting">Result</div>
-		</div>
+  <div class="container mt-4">
+    <div class="input-group mb-4">
+      <input type="text" class="form-control" id="input_keyword" placeholder="검색어를 입력하시오..." aria-label="검색어를 입력하시오..." aria-describedby="button-search">
+      <div class="input-group-append">
+        <button class="btn btn-outline-primary" type="button" id="button-search" onclick="fetchSubwayData()">검색</button>
+      </div>
+    </div>
+
+    <div id="chatHistory" class="row"></div>
   </div>
 </body>
+
 </html>
